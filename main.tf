@@ -13,15 +13,19 @@ resource "azurerm_public_ip" "pip" {
   allocation_method   = "Dynamic"
   tags                = local.tags
 }
-
+data "azurerm_subnet" "snet1" {
+  name                 = "subnet-1"
+  virtual_network_name = "VNET-1"
+  resource_group_name  = "github-wkflow-rg"
+}
 resource "azurerm_lb" "lb" {
 
   name                = "jakkalb"
   location            = azurerm_public_ip.pip.location
   resource_group_name = azurerm_public_ip.pip.resource_group_name
   frontend_ip_configuration {
-    name                 = "Publicfacing"
-    public_ip_address_id = azurerm_public_ip.pip.id
+    name      = "Publicfacing"
+    subnet_id = data.azurerm_subnet.snet1.id
   }
   tags = local.tags
 }
