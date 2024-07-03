@@ -1,5 +1,8 @@
 variable "securityrules" {
   type = map(object({
+    name      = string
+    priority  = number
+    direction = string
   }))
 
   default = {
