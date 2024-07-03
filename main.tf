@@ -24,7 +24,7 @@ resource "azurerm_lb" "lb" {
   location            = azurerm_public_ip.pip.location
   resource_group_name = azurerm_public_ip.pip.resource_group_name
   frontend_ip_configuration {
-    name      = "Publicfacing"
+    name      = "PublicIPAddress"
     subnet_id = data.azurerm_subnet.snet1.id
   }
   tags = local.tags
@@ -41,7 +41,7 @@ resource "azurerm_lb_nat_pool" "nat" {
   frontend_port_start            = 50000
   frontend_port_end              = 50119
   backend_port                   = 22
-  frontend_ip_configuration_name = "Public"
+  frontend_ip_configuration_name = "PublicIPAddress"
 }
 
 resource "azurerm_lb_probe" "lb_probe" {
