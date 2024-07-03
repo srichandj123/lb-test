@@ -3,16 +3,11 @@ terraform {
   cloud {
     organization = "jakka"
     workspaces {
-      name = ""
-    }
-  }
-  required_providers {
-    azurerm = {
-      source  = "hashicorp/azurerm"
-      version = "~> 3.105"
+      name = "lb-test-wkspc"
     }
   }
 }
+
 
 provider "azurerm" {
   features {
