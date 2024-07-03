@@ -7,7 +7,7 @@ resource "azurerm_network_security_group" "nsg" {
     content {
       name                       = security_rule.value.rule1.name
       priority                   = security_rule.value.rule1.priority
-      direction                  = sec
+      direction                  = security_rule.value.rule1.direction
       access                     = "Allow"
       protocol                   = "Tcp"
       source_port_range          = "*"
