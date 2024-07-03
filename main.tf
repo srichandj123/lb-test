@@ -60,12 +60,3 @@ resource "azurerm_lb_rule" "lb_rule" {
   frontend_ip_configuration_name = "PublicIPAddress"
   loadbalancer_id                = azurerm_lb.lb.id
 }
-resource "azurerm_lb_outbound_rule" "outrule" {
-  name                    = "lboutrule"
-  loadbalancer_id         = azurerm_lb.lb.id
-  protocol                = "Tcp"
-  backend_address_pool_id = azurerm_lb_backend_address_pool.bepool.id
-  frontend_ip_configuration {
-    name = "PublicIPAddress"
-  }
-}
