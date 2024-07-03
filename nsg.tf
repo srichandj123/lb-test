@@ -5,9 +5,9 @@ resource "azurerm_network_security_group" "nsg" {
   dynamic "security_rule" {
     for_each = var.securityrules
     content {
-      name                       = security_rule.value.name
-      priority                   = security_rule.value.priority
-      direction                  = security_rule.value.direction
+      name                       = security_rule.value["name"]
+      priority                   = security_rule.value["priority"]
+      direction                  = security_rule.value["direction"]
       access                     = "Allow"
       protocol                   = "Tcp"
       source_port_range          = "*"
