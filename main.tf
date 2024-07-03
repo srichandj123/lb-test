@@ -23,6 +23,7 @@ resource "azurerm_lb" "lb" {
   name                = "jakkalb"
   location            = azurerm_public_ip.pip.location
   resource_group_name = azurerm_public_ip.pip.resource_group_name
+  sku                 = "Standard"
   frontend_ip_configuration {
     name      = "PublicIPAddress"
     subnet_id = data.azurerm_subnet.snet1.id
