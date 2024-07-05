@@ -28,9 +28,11 @@ resource "azurerm_availability_set" "avset" {
 }
 
 resource "azurerm_virtual_machine" "vm" {
+  count                 = 2
   name                  = "jakkavm-${count.index}"
   location              = azurerm_lb.lb.location
   resource_group_name   = azurerm_lb.lb.resource_group_name
+  availability_set_id   = azurerm_availability_set.avset.id
   network_interface_ids = [element(azurerm_network_interface.nic.*.id, count.index)]
   vm_size               = "Standard_DS1_v2"
   storage_image_reference {
