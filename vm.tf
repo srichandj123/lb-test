@@ -49,7 +49,7 @@ resource "azurerm_virtual_machine" "vm" {
   }
   storage_data_disk {
     name              = element(azurerm_managed_disk.disk.*.name, count.index)
-    managed_disk_type = element(azurerm_managed_disk.disk.*.id, count.index)
+    managed_disk_type = "Standard_LRS"
     create_option     = "Attach"
     lun               = 1
     disk_size_gb      = element(azurerm_managed_disk.disk.*.disk_size_gb, count.index)
